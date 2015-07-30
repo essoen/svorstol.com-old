@@ -8,6 +8,7 @@ var reload = browserSync.reload;
 var browserify = require('browserify');
 var babelify = require('babelify');
 var source = require('vinyl-source-stream');
+var run = require('gulp-run');
 
 
 
@@ -167,4 +168,9 @@ gulp.task('build', ['package'], function () {
 
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
+});
+
+
+gulp.task('deploy', ['build'], function() {
+    run("rsync -az -e 'ssh' dist esso@svorstol.com:/home/esso").exec();
 });
