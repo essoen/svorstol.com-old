@@ -158,7 +158,6 @@ gulp.task('serve:test', ['produce'], function () {
   gulp.watch([
     'test/spec/**/*.js'
   ]).on('change', reload);
-
 });
 
 gulp.task('build', ['package'], function () {
@@ -168,7 +167,6 @@ gulp.task('build', ['package'], function () {
 gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
-
 
 gulp.task('deploy', ['build'], function() {
     run(`rsync -az -e 'ssh' dist esso@svorstol.com:/home/esso`).exec();
