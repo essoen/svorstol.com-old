@@ -1,4 +1,3 @@
-/*global -$ */
 'use strict';
 // generated on 2015-07-22 using generator-es6-webapp 0.1.0
 var gulp = require('gulp');
@@ -17,7 +16,7 @@ gulp.task('eslint', function() {
         .pipe($.eslint())
         .pipe(reload({stream: true, once: true}))
         /* Outputs hinting to console */
-        .pipe($.eslint.format())
+        .pipe($.eslint.format());
 				//.pipe($.if(!browserSync.active, $.eslint.failOnError()))
 });
 
@@ -37,8 +36,8 @@ gulp.task('less', function () {
 
 gulp.task('es6', ['eslint'], function () {
 	browserify({
-		entries:'./app/scripts/main.js',
-		debug:true
+		entries: './app/scripts/main.js',
+		debug: true
 	})
 	.transform(babelify)
 	.bundle()
@@ -103,11 +102,11 @@ gulp.task('wiredep', function () {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('preflight',['eslint']);
+gulp.task('preflight', ['eslint']);
 
-gulp.task('produce',['preflight','wiredep','es6','less','images','fonts']);
+gulp.task('produce', ['preflight', 'wiredep', 'es6', 'less', 'images', 'fonts']);
 
-gulp.task('package',['produce','html','extras']);
+gulp.task('package', ['produce', 'html', 'extras']);
 
 gulp.task('serve', ['produce'], function () {
   browserSync({
@@ -135,7 +134,7 @@ gulp.task('serve', ['produce'], function () {
   gulp.watch('app/scripts/**/*.js', ['es6']);
 });
 
-gulp.task('serve:dist',['package'], function () {
+gulp.task('serve:dist', ['package'], function () {
   browserSync({
     notify: false,
     port: 9000,
@@ -145,7 +144,7 @@ gulp.task('serve:dist',['package'], function () {
   });
 });
 
-gulp.task('serve:test',['produce'], function () {
+gulp.task('serve:test', ['produce'], function () {
   browserSync({
     notify: false,
     open: false,
@@ -157,7 +156,7 @@ gulp.task('serve:test',['produce'], function () {
   });
 
   gulp.watch([
-    'test/spec/**/*.js',
+    'test/spec/**/*.js'
   ]).on('change', reload);
 
 });
@@ -172,5 +171,5 @@ gulp.task('default', ['clean'], function () {
 
 
 gulp.task('deploy', ['build'], function() {
-    run("rsync -az -e 'ssh' dist esso@svorstol.com:/home/esso").exec();
+    run(`rsync -az -e 'ssh' dist esso@svorstol.com:/home/esso`).exec();
 });
