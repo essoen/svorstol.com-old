@@ -6,7 +6,7 @@
   "devDependencies": {
     "autoprefixer-core": "^5.1.8",
     "babel": "^5.2.3",
-    "babel-eslint": "^3.0.1",
+    "babel-eslint": "4.1.7",
     "babelify": "^6.0.2",
     "browser-sync": "^2.2.1",
     "browserify": "^10.0.0",
